@@ -1,10 +1,8 @@
 {
-  "name": "skyux-sample",
+  "name": "skyux-errors",
   "mode": "easy",
   "compileMode": "aot",
-  "skyuxModules": [
-    "SkyErrorModule"
-  ],
+  "skyuxModules": [],
   "plugins": [
     "@skyux-sdk/builder-plugin-skyux"
   ],
