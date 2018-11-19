@@ -15,13 +15,12 @@ import {
 })
 export class SkyErrorComponent implements OnInit {
   @Input()
+  public get errorType() {
+    return this._errorType;
+  }
   public set errorType(value: string) {
     this._errorType = value;
     this.setErrorTypeFields();
-  }
-
-  public get errorType() {
-    return this._errorType;
   }
 
   public title: string = undefined;
@@ -56,22 +55,6 @@ export class SkyErrorComponent implements OnInit {
       this.title = this.getString('skyux_errors_security_title');
       this.description = undefined;
     }
-  }
-
-  public showBrokenImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'broken';
-  }
-
-  public showNotFoundImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'notfound';
-  }
-
-  public showConstructionImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'construction';
-  }
-
-  public showSecurityImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'security';
   }
 
   private getString(key: string): string {

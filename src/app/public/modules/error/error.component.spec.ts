@@ -250,6 +250,53 @@ describe('Error component', () => {
     });
   });
 
+  it('error type custom displays correct selected image, title, description, and action text', () => {
+    let html = `
+    <sky-error>
+      <sky-error-image
+        imageType="broken"
+      >
+      </sky-error-image>
+      <sky-error-title>test title</sky-error-title>
+      <sky-error-description>test description</sky-error-description>
+      <sky-error-action>
+        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
+          test action text
+        </button>
+      </sky-error-action>
+    </sky-error>`;
+
+    let fixture = TestBed
+      .overrideComponent(
+        ErrorTestComponent,
+        {
+          set: {
+            template: html
+          }
+        }
+      )
+      .createComponent(ErrorTestComponent);
+
+    let el = fixture.nativeElement;
+
+    fixture.detectChanges();
+
+    // check image
+    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
+    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
+    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+
+    expect(el.querySelector('.sky-error-image-container .sky-error-broken-image')).toExist();
+    expect(el.querySelector('.sky-error-title')).toHaveText('test title');
+    expect(el.querySelector('.sky-error-description')).toHaveText('test description');
+    expect(el.querySelector('.sky-error-action button')).toHaveText('test action text');
+
+    // Accessibility check
+    fixture.whenStable().then(() => {
+      expect(fixture.nativeElement).toBeAccessible();
+    });
+  });
+
   it('custom action method is called with action button is clicked', () => {
     let html = `
     <sky-error errorType="broken">

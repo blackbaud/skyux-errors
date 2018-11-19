@@ -1,0 +1,10 @@
+<div *ngIf="imageType"
+  [ngClass]="{
+    'sky-error-broken-image': imageType === 'broken',
+    'sky-error-notfound-image': imageType === 'notfound',
+    'sky-error-construction-image': imageType === 'construction',
+    'sky-error-security-image': imageType === 'security'
+  }"
+>
+</div>
+<ng-content></ng-content>
