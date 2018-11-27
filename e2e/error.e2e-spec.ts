@@ -74,6 +74,19 @@ describe('Error', () => {
     expect('#screenshot-error-custom').toMatchBaselineScreenshot(done);
   });
 
+  it('should match previous screenshot for custom type with a default image', (done) => {
+    SkyHostBrowser.get('visual/error');
+    SkyHostBrowser.setWindowBreakpoint('lg');
+    expect('#screenshot-error-custom-default-image').toMatchBaselineScreenshot(done);
+  });
+
+  it('should match previous screenshot for custom type with a default image (screen: xs)', (done) => {
+    SkyHostBrowser.get('visual/error');
+    SkyHostBrowser.setWindowBreakpoint('xs');
+    SkyHostBrowser.scrollTo('#screenshot-error-custom-default-image');
+    expect('#screenshot-error-custom-default-image').toMatchBaselineScreenshot(done);
+  });
+
   it('should match previous error modal form screenshot', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
