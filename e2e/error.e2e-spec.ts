@@ -105,4 +105,17 @@ describe('Error', () => {
     SkyHostBrowser.moveCursorOffScreen();
     expect('.sky-modal').toMatchBaselineScreenshot(done);
   });
+
+  it('should match previous screenshot for custom title and description', (done) => {
+    SkyHostBrowser.get('visual/error');
+    SkyHostBrowser.setWindowBreakpoint('lg');
+    expect('#screenshot-error-custom-broken').toMatchBaselineScreenshot(done);
+  });
+
+  it('should match previous screenshot for custom title and description (screen: xs)', (done) => {
+    SkyHostBrowser.get('visual/error');
+    SkyHostBrowser.setWindowBreakpoint('xs');
+    SkyHostBrowser.scrollTo('#screenshot-error-custom-broken');
+    expect('#screenshot-error-custom-broken').toMatchBaselineScreenshot(done);
+  });
 });
