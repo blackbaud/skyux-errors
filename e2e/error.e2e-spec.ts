@@ -12,6 +12,7 @@ describe('Error', () => {
   it('should match previous screenshot for broken type', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-broken');
     expect('#screenshot-error-broken').toMatchBaselineScreenshot(done, {
       screenshotName: 'error-broken-lg'
     });
@@ -29,6 +30,7 @@ describe('Error', () => {
   it('should match previous screenshot for notfound type', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-notfound');
     expect('#screenshot-error-notfound').toMatchBaselineScreenshot(done, {
       screenshotName: 'error-notfound-lg'
     });
@@ -46,6 +48,7 @@ describe('Error', () => {
   it('should match previous screenshot for construction type', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-construction');
     expect('#screenshot-error-construction').toMatchBaselineScreenshot(done, {
       screenshotName: 'error-construction-lg'
     });
@@ -63,6 +66,7 @@ describe('Error', () => {
   it('should match previous screenshot for security type', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-security');
     expect('#screenshot-error-security').toMatchBaselineScreenshot(done, {
       screenshotName: 'error-security-lg'
     });
@@ -80,6 +84,7 @@ describe('Error', () => {
   it('should match previous screenshot for custom type', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-custom');
     expect('#screenshot-error-custom').toMatchBaselineScreenshot(done, {
       screenshotName: 'error-custom-lg'
     });
@@ -97,6 +102,7 @@ describe('Error', () => {
   it('should match previous screenshot for custom title and description', (done) => {
     SkyHostBrowser.get('visual/error');
     SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-custom-broken');
     expect('#screenshot-error-custom-broken').toMatchBaselineScreenshot(done, {
       screenshotName: 'error-custom-broken-lg'
     });
