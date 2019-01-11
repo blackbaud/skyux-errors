@@ -18,6 +18,8 @@ import {
 
 describe('Error modal service', () => {
   it('Test open is called with correct parameters', () => {
+    /* tslint:disable */
+    // Disabling to ignore partial types
     let modalService = new MockModalService(
       {
         resolveComponentFactory() {}
@@ -29,6 +31,7 @@ describe('Error modal service', () => {
         addHostEl: function (): any {}
       } as any
     );
+    /* tslint:enable */
 
     const config: ErrorModalConfig = {
       errorTitle: 'Error title',
