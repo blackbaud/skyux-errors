@@ -22,13 +22,8 @@ describe('Error modal service', () => {
     // Disabling to ignore partial types
     let modalService = new MockModalService(
       {
-        resolveComponentFactory() {}
-      } as any,
-      {
-        bootstrap() {}
-      } as any,
-      {
-        addHostEl: function (): any {}
+        removeComponent: function (): any {},
+        addComponent: function (ref: any): any {}
       } as any
     );
     /* tslint:enable */
