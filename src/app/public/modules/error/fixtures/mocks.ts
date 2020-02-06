@@ -1,6 +1,7 @@
 import {
   SkyModalInstance,
-  SkyModalService
+  SkyModalService,
+  SkyModalConfiguration
 } from '@skyux/modals';
 
 export class SkyModalInstanceMock {
@@ -21,8 +22,8 @@ export interface OpenParameters {
 export class MockModalService extends SkyModalService {
   public openCalls: OpenParameters[] = [];
 
-  public open(...args: any): SkyModalInstance {
-    this.openCalls.push(args);
+  public open(component: any, config: any): SkyModalInstance {
+    this.openCalls.push({component: component, providers: config});
 
     return undefined;
   }
