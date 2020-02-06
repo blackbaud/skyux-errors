@@ -1,7 +1,6 @@
 import {
   SkyModalInstance,
-  SkyModalService,
-  SkyModalConfiguration
+  SkyModalService
 } from '@skyux/modals';
 
 export class SkyModalInstanceMock {
