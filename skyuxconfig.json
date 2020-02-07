@@ -1,11 +1,16 @@
 {
+  "$schema": "./node_modules/@skyux/config/skyuxconfig-schema.json",
   "name": "skyux-errors",
   "mode": "easy",
   "compileMode": "aot",
-  "skyuxModules": [],
   "plugins": [
     "@skyux-sdk/builder-plugin-skyux"
   ],
+  "app": {
+    "styles": [
+      "@skyux/theme/css/sky.css"
+    ]
+  },
   "testSettings": {
     "e2e": {
       "browserSet": "speedy"
