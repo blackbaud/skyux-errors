@@ -1,4 +1,5 @@
 import {
+  async,
   TestBed
 } from '@angular/core/testing';
 
@@ -23,7 +24,7 @@ describe('Error component', () => {
     });
   });
 
-  it('error type broken displays correct image, title, description, and action text', () => {
+  it('error type broken displays correct image, title, description, and action text', async(() => {
     let html = `
     <sky-error errorType="broken">
       <sky-error-action>
@@ -65,9 +66,9 @@ describe('Error component', () => {
     fixture.whenStable().then(() => {
       expect(fixture.nativeElement).toBeAccessible();
     });
-  });
+  }));
 
-  it('error type notfound displays correct image, title, and action text', () => {
+  it('error type notfound displays correct image, title, and action text', async(() => {
     let html = `
     <sky-error errorType="notfound">
       <sky-error-action>
@@ -107,9 +108,9 @@ describe('Error component', () => {
     fixture.whenStable().then(() => {
       expect(fixture.nativeElement).toBeAccessible();
     });
-  });
+  }));
 
-  it('error type construction displays correct image, title, and action text', () => {
+  it('error type construction displays correct image, title, and action text', async(() => {
     let html = `
     <sky-error errorType="construction">
       <sky-error-action>
@@ -161,9 +162,9 @@ describe('Error component', () => {
     fixture.whenStable().then(() => {
       expect(fixture.nativeElement).toBeAccessible();
     });
-  });
+  }));
 
-  it('error type security displays correct image, title, description, and action text', () => {
+  it('error type security displays correct image, title, description, and action text', async(() => {
     let html = `
     <sky-error errorType="security">
       <sky-error-action>
@@ -203,9 +204,9 @@ describe('Error component', () => {
     fixture.whenStable().then(() => {
       expect(fixture.nativeElement).toBeAccessible();
     });
-  });
+  }));
 
-  it('error type custom displays correct image, title, description, and action text', () => {
+  it('error type custom displays correct image, title, description, and action text', async(() => {
     let html = `
     <sky-error>
       <sky-error-image>test image</sky-error-image>
@@ -248,9 +249,9 @@ describe('Error component', () => {
     fixture.whenStable().then(() => {
       expect(fixture.nativeElement).toBeAccessible();
     });
-  });
+  }));
 
-  it('error type custom can replace title and description', () => {
+  it('error type custom can replace title and description', async(() => {
     let html = `
     <sky-error
       errorType="broken"
@@ -295,7 +296,7 @@ describe('Error component', () => {
     fixture.whenStable().then(() => {
       expect(fixture.nativeElement).toBeAccessible();
     });
-  });
+  }));
 
   it('custom action method is called with action button is clicked', () => {
     let html = `
