@@ -4,7 +4,7 @@ import {
 
 import {
   SkyErrorModalService
-} from '../../public';
+} from '../../public/public_api';
 
 @Component({
   selector: 'error-visual',

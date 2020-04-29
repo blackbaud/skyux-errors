@@ -7,9 +7,7 @@
     "@skyux-sdk/builder-plugin-skyux"
   ],
   "app": {
-    "styles": [
-      "@skyux/theme/css/sky.css"
-    ]
+    "styles": []
   },
   "testSettings": {
     "e2e": {
@@ -17,6 +15,11 @@
     },
     "unit": {
       "browserSet": "paranoid"
+    }
+  },
+  "host": {
+    "frameOptions": {
+      "none": true
     }
   }
 }
