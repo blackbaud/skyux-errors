@@ -50,6 +50,7 @@
     "@skyux/http": "3.9.0",
     "@skyux/i18n": "3.11.0",
     "@skyux/indicators": "3.2.1",
+    "@skyux/layout": "3.9.0",
     "@skyux/modals": "3.2.0",
     "@skyux/omnibar-interop": "3.1.0",
     "@skyux/router": "3.1.1",
