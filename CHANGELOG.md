@@ -1,3 +1,10 @@
+# 4.0.0-rc.1 (2020-04-30)
+
+### New features
+
+- Added bug fixes and features from the `master` branch. [#22](https://github.com/blackbaud/skyux-errors/pull/22)
+- Added a test fixture for the error component to be used in consumer unit tests. [#22](https://github.com/blackbaud/skyux-errors/pull/22)
+
 # 3.2.0 (2020-03-03)
 
 - Added an option to the error component to hide the default image but display the default error message. [#18](https://github.com/blackbaud/skyux-errors/pull/18)
