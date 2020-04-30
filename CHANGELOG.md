@@ -1,3 +1,7 @@
+# 3.2.0 (2020-03-03)
+
+- Added an option to the error component to hide the default image but display the default error message. [#18](https://github.com/blackbaud/skyux-errors/pull/18)
+
 # 4.0.0-rc.0 (2020-02-19)
 
 ### New features
