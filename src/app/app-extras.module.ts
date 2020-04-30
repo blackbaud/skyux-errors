@@ -3,17 +3,22 @@ import {
 } from '@angular/core';
 
 import {
+  SkyPageModule
+} from '@skyux/layout';
+
+import {
   SkyAppLinkModule
 } from '@skyux/router';
 
 import {
   SkyErrorModule
-} from './public';
+} from './public/public_api';
 
 @NgModule({
   exports: [
     SkyAppLinkModule,
-    SkyErrorModule
+    SkyErrorModule,
+    SkyPageModule
   ]
 })
 export class AppExtrasModule { }

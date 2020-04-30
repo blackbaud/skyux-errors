@@ -156,4 +156,22 @@ describe('Error', () => {
       screenshotName: 'error-modal-long-xs'
     });
   });
+
+  it('should match previous screenshot for a hidden image', (done) => {
+    SkyHostBrowser.get('visual/error');
+    SkyHostBrowser.setWindowBreakpoint('lg');
+    SkyHostBrowser.scrollTo('#screenshot-error-hidden-image');
+    expect('#screenshot-error-hidden-image').toMatchBaselineScreenshot(done, {
+      screenshotName: 'error-hidden-image-lg'
+    });
+  });
+
+  it('should match previous screenshot for a hidden image (screen: xs)', (done) => {
+    SkyHostBrowser.get('visual/error');
+    SkyHostBrowser.setWindowBreakpoint('xs');
+    SkyHostBrowser.scrollTo('#screenshot-error-hidden-image');
+    expect('#screenshot-error-hidden-image').toMatchBaselineScreenshot(done, {
+      screenshotName: 'error-hidden-image-xs'
+    });
+  });
 });
