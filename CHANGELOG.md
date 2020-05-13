@@ -1,3 +1,11 @@
+# 4.0.0 (2020-05-13)
+
+### New features
+
+- Added a test fixture for the error component to be used in consumer unit tests. [#22](https://github.com/blackbaud/skyux-errors/pull/22)
+- Added support for `@angular/core@^9`. [#16](https://github.com/blackbaud/skyux-errors/pull/16)
+- Updated the pipeline to transpile to the [Angular Package Format](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview). [#16](https://github.com/blackbaud/skyux-errors/pull/16)
+
 # 4.0.0-rc.1 (2020-04-30)
 
 ### New features
