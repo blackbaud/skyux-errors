@@ -7,7 +7,9 @@
     "@skyux-sdk/builder-plugin-skyux"
   ],
   "app": {
-    "styles": []
+    "styles": [
+      "@skyux/docs-tools/css/docs-tools.css"
+    ]
   },
   "testSettings": {
     "e2e": {
@@ -30,8 +32,17 @@
     }
   },
   "host": {
+    "url": "https://developer.blackbaud.com",
     "frameOptions": {
       "none": true
+    }
+  },
+  "omnibar": {
+    "experimental": true
+  },
+  "params": {
+    "svcid": {
+      "value": "skyux"
     }
   }
 }
