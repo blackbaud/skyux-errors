@@ -12,8 +12,8 @@ import {
 })
 export class SkyErrorTitleComponent {
 /**
- * Indicates whether to replace the default title. If `false`, this title
- * is appended to the default title.
+ * Indicates whether to replace the default title. If `false`, the title
+ * from this component is added after the default title.
  * @default false
  */
   @Input()

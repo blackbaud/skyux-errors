@@ -12,8 +12,8 @@ import {
 })
 export class SkyErrorDescriptionComponent {
 /**
- * Indicates whether to replace the default description. If `false`, this description
- * is appended to the default description.
+ * Indicates whether to replace the default description. If `false`, the description
+ * from this component is added after the default description.
  * @default false
  */
   @Input()
