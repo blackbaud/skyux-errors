@@ -17,6 +17,9 @@ import {
   SkyErrorDescriptionComponent
 } from './error-description.component';
 
+/**
+ * Displays a SKY UX-themed error message.
+ */
 @Component({
   selector: 'sky-error',
   styleUrls: ['./error.component.scss'],

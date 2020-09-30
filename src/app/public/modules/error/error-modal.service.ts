@@ -14,6 +14,10 @@ import {
   SkyErrorModalFormComponent
 } from './error-modal-form.component';
 
+/**
+ * Opens a modal to display a SKY UX-themed error message.
+ * The `config` object specifies the text to display in the error message.
+ */
 @Injectable()
 export class SkyErrorModalService {
   constructor(
