@@ -16,14 +16,15 @@ import {
 
 /**
  * Opens a modal to display a SKY UX-themed error message.
- * The `config` object specifies the text to display in the error message.
  */
 @Injectable()
 export class SkyErrorModalService {
   constructor(
     private modal: SkyModalService
   ) { }
-
+/**
+ * Specifies text for the the error message, including title, description, and action label.
+ */
   public open(config: ErrorModalConfig) {
     const providers = [{ provide: ErrorModalConfig, useValue: config }];
 
