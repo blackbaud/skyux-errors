@@ -8,7 +8,7 @@ import {
 } from '@skyux/errors';
 
 @Component({
-  selector: 'sky-error-demo',
+  selector: 'app-error-demo',
   templateUrl: './error-demo.component.html',
   providers: [SkyErrorModalService]
 })

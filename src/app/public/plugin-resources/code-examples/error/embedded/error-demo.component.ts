@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'sky-error-demo',
+  selector: 'app-error-demo',
   templateUrl: './error-demo.component.html',
   styles: [`
     ::ng-deep .sky-error {
