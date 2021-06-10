@@ -17,7 +17,9 @@ import {
 /**
  * Opens a modal to display a SKY UX-themed error message.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SkyErrorModalService {
   constructor(
     private modal: SkyModalService

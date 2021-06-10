@@ -35,10 +35,6 @@ import {
 } from './error-action.component';
 
 import {
-  SkyErrorModalService
-} from './error-modal.service';
-
-import {
   SkyErrorModalFormComponent
 } from './error-modal-form.component';
 
@@ -63,9 +59,6 @@ import {
     SkyErrorDescriptionComponent,
     SkyErrorActionComponent,
     SkyErrorModalFormComponent
-  ],
-  providers: [
-    SkyErrorModalService
   ],
   entryComponents: [
     SkyErrorModalFormComponent
