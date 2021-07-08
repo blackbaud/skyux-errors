@@ -1,3 +1,10 @@
+# 5.0.0-beta.0 (2021-07-08)
+
+- Initial beta release.
+- Added support for `@angular/core@^12`. [#48](https://github.com/blackbaud/skyux-autonumeric/pull/48)
+- Added support for `5.0.0-beta.*` versions of SKY UX component libraries. [#48](https://github.com/blackbaud/skyux-autonumeric/pull/48)
+- Fixed `SkyErrorModalService` to work within lazy-loaded feature modules. [#46](https://github.com/blackbaud/skyux-autonumeric/pull/46)
+
 # 4.0.1 (2020-08-06)
 
 - Added support for `@skyux/theme@4.8.0` and `@skyux-sdk/builder@4.3.0`. [#31](https://github.com/blackbaud/skyux-errors/pull/31)
