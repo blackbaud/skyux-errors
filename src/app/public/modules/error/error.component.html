@@ -14,8 +14,8 @@
 
       <ng-content select="sky-error-image"></ng-content>
     </div>
-    <div class="sky-error-content sky-error-title sky-emphasized">
-      <span *ngIf="showTitle">{{ title }}</span>
+    <div class="sky-error-content sky-error-title">
+      <h1 *ngIf="showTitle">{{ title }}</h1>
 
       <ng-content select="sky-error-title"></ng-content>
     </div>

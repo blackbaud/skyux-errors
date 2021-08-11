@@ -7,6 +7,35 @@
     The error component displays a SKY UX-themed error message.
   </sky-docs-demo-page-summary>
 
+  <sky-docs-demo>
+    <sky-docs-demo-control-panel
+      (selectionChange)="onDemoSelectionChange($event)"
+      >
+      <sky-docs-demo-control-panel-section>
+        <sky-docs-demo-control-panel-radio-group
+          heading="Error type"
+          initialValue="broken"
+          propertyName="errorType"
+          [choices]="errorTypeChoices"
+        >
+        </sky-docs-demo-control-panel-radio-group>
+      </sky-docs-demo-control-panel-section>
+    </sky-docs-demo-control-panel>
+    <sky-error
+      [errorType]="demoSettings.errorType"
+    >
+      <sky-error-action>
+        <button
+          class="sky-btn sky-btn-link"
+          type="button"
+          (click)="customAction()"
+        >
+          Refresh
+        </button>
+      </sky-error-action>
+    </sky-error>
+  </sky-docs-demo>
+
   <sky-docs-design-guidelines>
     <sky-docs-demo-page-section
       heading="Usage"

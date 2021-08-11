@@ -1,11 +1,24 @@
 import {
-  async,
+  ComponentFixture,
   TestBed
 } from '@angular/core/testing';
 
 import {
-  expect
+  expect,
+  expectAsync
 } from '@skyux-sdk/testing';
+
+import {
+  SkyLibResourcesService
+} from '@skyux/i18n';
+
+import {
+  forkJoin
+} from 'rxjs';
+
+import {
+  take
+} from 'rxjs/operators';
 
 import {
   ErrorTestComponent
@@ -16,413 +29,218 @@ import {
 } from './fixtures/error-fixtures.module';
 
 describe('Error component', () => {
+  let component: ErrorTestComponent;
+  let el: any;
+  let fixture: ComponentFixture<ErrorTestComponent>;
+  let resourcesService: SkyLibResourcesService;
+  const resourceStrings: any = {};
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
+    fixture = TestBed.configureTestingModule({
       imports: [
         SkyErrorFixturesModule
       ]
-    });
+    }).createComponent(ErrorTestComponent);
+
+    el = fixture.nativeElement;
+    fixture.detectChanges();
+    component = fixture.componentInstance;
+
+    resourcesService = TestBed.inject(SkyLibResourcesService);
+    forkJoin([
+      resourcesService.getString('skyux_errors_broken_description'),
+      resourcesService.getString('skyux_errors_broken_title'),
+      resourcesService.getString('skyux_errors_construction_description'),
+      resourcesService.getString('skyux_errors_construction_title'),
+      resourcesService.getString('skyux_errors_not_found_description'),
+      resourcesService.getString('skyux_errors_not_found_title'),
+      resourcesService.getString('skyux_errors_security_description'),
+      resourcesService.getString('skyux_errors_security_title')
+    ])
+      .pipe(take(1))
+      .subscribe((resources: string[]) => {
+        resourceStrings.brokenDescription = resources[0];
+        resourceStrings.brokenTitle = resources[1];
+        resourceStrings.constructionDescription = resources[2];
+        resourceStrings.constructionTitle = resources[3];
+        resourceStrings.notFoundDescription = resources[4];
+        resourceStrings.notFoundTitle = resources[5];
+        resourceStrings.securityDescription = resources[6];
+        resourceStrings.securityTitle = resources[7];
+      });
   });
 
-  it('error type broken displays correct image, title, description, and action text', async(() => {
-    let html = `
-    <sky-error errorType="broken">
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          Refresh
-        </button>
-      </sky-error-action>
-    </sky-error>`;
+  function getImageContainer(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-image-container`);
+  }
 
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
+  function getBrokenImage(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-broken-image`);
+  }
 
-    let el = fixture.nativeElement;
+  function getNotFoundImage(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-notfound-image`);
+  }
 
+  function getConstructionImage(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-construction-image`);
+  }
+
+  function getSecurityImage(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-security-image`);
+  }
+
+  function getErrorTitle(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-title`);
+  }
+
+  function getErrorDescription(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-description`);
+  }
+
+  function getErrorActionButton(selector: string): HTMLElement {
+    return el.querySelector(`${selector} .sky-error-action button`);
+  }
+
+  it('error type broken displays correct image, title, description, and action text', () => {
+    component.errorType = 'broken';
     fixture.detectChanges();
 
-    let title = 'Sorry, something went wrong.';
-    let description = 'Try to refresh this page or come back later.';
+    expect(getBrokenImage('#test-error')).toExist();
+    expect(getNotFoundImage('#test-error')).not.toExist();
+    expect(getConstructionImage('#test-error')).not.toExist();
+    expect(getSecurityImage('#test-error')).not.toExist();
 
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+    expect(getErrorTitle('#test-error')).toHaveText(resourceStrings.brokenTitle);
+    expect(getErrorDescription('#test-error')).toHaveText(resourceStrings.brokenDescription);
+    expect(getErrorActionButton('#test-error')).toHaveText(component.buttonText);
+  });
 
-    expect(el.querySelector('.sky-error-title')).toHaveText(title);
-    expect(el.querySelector('.sky-error-description')).toHaveText(description);
-    expect(el.querySelector('.sky-error-action button')).toHaveText('Refresh');
-
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
-
-  it('error type broken does not display image when "showImage" is false', async(() => {
-    let html = `
-    <sky-error
-      errorType="broken"
-      [showImage]="false"
-    >
-      <sky-error-action>
-        <button
-          class="sky-btn sky-btn-primary"
-          type="submit"
-          (click)="customAction()"
-        >
-          Refresh
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+  it('error type broken does not display image when "showImage" is false', () => {
+    component.errorType = 'broken';
+    component.showImage = false;
     fixture.detectChanges();
 
-    let title = 'Sorry, something went wrong.';
-    let description = 'Try to refresh this page or come back later.';
+    expect(getImageContainer('#test-error')).not.toExist();
+    expect(getBrokenImage('#test-error')).not.toExist();
+    expect(getNotFoundImage('#test-error')).not.toExist();
+    expect(getConstructionImage('#test-error')).not.toExist();
+    expect(getSecurityImage('#test-error')).not.toExist();
 
-    // check image
-    expect(el.querySelector('.sky-error-image-container')).not.toExist();
-    expect(el.querySelector('.sky-error-broken-image')).not.toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+    expect(getErrorTitle('#test-error')).toHaveText(resourceStrings.brokenTitle);
+    expect(getErrorDescription('#test-error')).toHaveText(resourceStrings.brokenDescription);
+    expect(getErrorActionButton('#test-error')).toHaveText(component.buttonText);
+  });
 
-    expect(el.querySelector('.sky-error-title')).toHaveText(title);
-    expect(el.querySelector('.sky-error-description')).toHaveText(description);
-    expect(el.querySelector('.sky-error-action button')).toHaveText('Refresh');
-
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
-
-  it('error type notfound displays correct image, title, and action text', async(() => {
-    let html = `
-    <sky-error errorType="notfound">
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          Refresh
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+  it('error type notfound displays correct image, title, and action text', () => {
+    component.errorType = 'notfound';
     fixture.detectChanges();
 
-    let title = 'Sorry, we can\'t reach that page.';
+    expect(getBrokenImage('#test-error')).not.toExist();
+    expect(getNotFoundImage('#test-error')).toExist();
+    expect(getConstructionImage('#test-error')).not.toExist();
+    expect(getSecurityImage('#test-error')).not.toExist();
 
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).not.toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+    expect(getErrorTitle('#test-error')).toHaveText(resourceStrings.notFoundTitle);
+    expect(getErrorDescription('#test-error')).toHaveText(resourceStrings.notFoundDescription);
+    expect(getErrorActionButton('#test-error')).toHaveText(component.buttonText);
+  });
 
-    expect(el.querySelector('.sky-error-title')).toHaveText(title);
-    expect(el.querySelector('.sky-error-action button')).toHaveText('Refresh');
-
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
-
-  it('error type construction displays correct image, title, and action text', async(() => {
-    let html = `
-    <sky-error errorType="construction">
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          Refresh
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+  it('error type construction displays correct image, title, and action text', () => {
+    component.errorType = 'construction';
     fixture.detectChanges();
 
-    let title = 'This page will return soon.';
-    let description =
-    `Thanks for your patience while improvements are made!  Please check back in a little while.`;
+    expect(getBrokenImage('#test-error')).not.toExist();
+    expect(getNotFoundImage('#test-error')).not.toExist();
+    expect(getConstructionImage('#test-error')).toExist();
 
-    let actualDescription: string = el.querySelector('.sky-error-description').innerText.trim();
-    let trimmedDescription = '';
+    expect(getErrorTitle('#test-error')).toHaveText(resourceStrings.constructionTitle);
+    expect(getErrorDescription('#test-error')).toHaveText(resourceStrings.constructionDescription);
+    expect(getErrorActionButton('#test-error')).toHaveText(component.buttonText);
+  });
 
-    if (actualDescription.indexOf('\r\n') >= 0) {
-      // IE inserts \r\n instead of \n
-      trimmedDescription = actualDescription.replace(/(\r\n)/g, '');
-    } else {
-      trimmedDescription = actualDescription.replace(/(\n)/g, '');
-    }
-
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).not.toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).toExist();
-
-    expect(el.querySelector('.sky-error-title')).toHaveText(title);
-    expect(trimmedDescription).toBe(description);
-    expect(el.querySelector('.sky-error-action button')).toHaveText('Refresh');
-
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
-
-  it('error type security displays correct image, title, description, and action text', async(() => {
-    let html = `
-    <sky-error errorType="security">
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          Refresh
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+  it('error type security displays correct image, title, description, and action text', () => {
+    component.errorType = 'security';
     fixture.detectChanges();
 
-    let title = 'This page requires additional permissions.';
+    expect(getBrokenImage('#test-error')).not.toExist();
+    expect(getNotFoundImage('#test-error')).not.toExist();
+    expect(getConstructionImage('#test-error')).not.toExist();
+    expect(getSecurityImage('#test-error')).toExist();
 
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).not.toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).toExist();
+    expect(getErrorTitle('#test-error')).toHaveText(resourceStrings.securityTitle);
+    expect(getErrorDescription('#test-error')).toHaveText(resourceStrings.securityDescription);
+    expect(getErrorActionButton('#test-error')).toHaveText(component.buttonText);
+  });
 
-    expect(el.querySelector('.sky-error-title')).toHaveText(title);
-    expect(el.querySelector('.sky-error-action button')).toHaveText('Refresh');
-
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
-
-  it('error type custom displays correct image, title, description, and action text', async(() => {
-    let html = `
-    <sky-error>
-      <sky-error-image>test image</sky-error-image>
-      <sky-error-title>test title</sky-error-title>
-      <sky-error-description>test description</sky-error-description>
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          test action text
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+  it('error type custom displays correct image, title, description, and action text', () => {
     fixture.detectChanges();
 
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).not.toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+    expect(getBrokenImage('#test-error-custom')).not.toExist();
+    expect(getNotFoundImage('#test-error-custom')).not.toExist();
+    expect(getConstructionImage('#test-error-custom')).not.toExist();
+    expect(getSecurityImage('#test-error-custom')).not.toExist();
 
-    expect(el.querySelector('.sky-error-image-container')).toHaveText('test image');
-    expect(el.querySelector('.sky-error-title')).toHaveText('test title');
-    expect(el.querySelector('.sky-error-description')).toHaveText('test description');
-    expect(el.querySelector('.sky-error-action button')).toHaveText('test action text');
+    expect(getImageContainer('#test-error-custom')).toHaveText(component.customImage);
+    expect(getErrorTitle('#test-error-custom')).toHaveText(component.customTitle);
+    expect(getErrorDescription('#test-error-custom')).toHaveText(component.customDescription);
+    expect(getErrorActionButton('#test-error-custom')).toHaveText(component.buttonText);
+  });
 
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
-
-  it('error type custom can replace title and description', async(() => {
-    let html = `
-    <sky-error
-      errorType="broken"
-    >
-      <sky-error-title
-        [replaceDefaultTitle]="true"
-      >
-        test title
-      </sky-error-title>
-      <sky-error-description
-        [replaceDefaultDescription]="true"
-      >
-        test description
-      </sky-error-description>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+  it('can replace title and description', () => {
+    component.errorType = 'broken';
+    component.replaceDefaultDescription = true;
+    component.replaceDefaultTitle = true;
     fixture.detectChanges();
 
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+    expect(getBrokenImage('#test-error-custom-replace-default')).toExist();
+    expect(getNotFoundImage('#test-error-custom-replace-default')).not.toExist();
+    expect(getConstructionImage('#test-error-custom-replace-default')).not.toExist();
+    expect(getSecurityImage('#test-error-custom-replace-default')).not.toExist();
 
-    expect(el.querySelector('.sky-error-title')).toHaveText('test title');
-    expect(el.querySelector('.sky-error-description')).toHaveText('test description');
+    expect(getErrorTitle('#test-error-custom-replace-default')).toHaveText(`${component.customTitle}`);
+    expect(getErrorDescription('#test-error-custom-replace-default')).toHaveText(`${component.customDescription}`);
+  });
 
-    // Accessibility check
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
+  it('can append onto title and description', () => {
+    component.errorType = 'broken';
+    component.replaceDefaultDescription = false;
+    component.replaceDefaultTitle = false;
+    fixture.detectChanges();
+
+    expect(getBrokenImage('#test-error-custom-replace-default')).toExist();
+    expect(getNotFoundImage('#test-error-custom-replace-default')).not.toExist();
+    expect(getConstructionImage('#test-error-custom-replace-default')).not.toExist();
+    expect(getSecurityImage('#test-error-custom-replace-default')).not.toExist();
+
+    expect(getErrorTitle('#test-error-custom-replace-default')).toHaveText(`${resourceStrings.brokenTitle} ${component.customTitle}`);
+    expect(getErrorDescription('#test-error-custom-replace-default')).toHaveText(`${resourceStrings.brokenDescription} ${component.customDescription}`);
+  });
 
   it('custom action method is called with action button is clicked', () => {
-    let html = `
-    <sky-error errorType="broken">
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          Refresh
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
-    fixture.detectChanges();
-
-    let component = fixture.componentInstance;
-
     spyOn(component, 'customAction');
 
-    let actionButton = el.querySelector('.sky-error-action button');
-    actionButton.click();
-    fixture.detectChanges();
+    getErrorActionButton('#test-error').click();
 
     expect(component.customAction).toHaveBeenCalled();
   });
 
   it('Invalid error type text is ignored', () => {
-    let html = `
-    <sky-error errorType="invalid-xx">
-      <sky-error-image>test image</sky-error-image>
-      <sky-error-title>test title</sky-error-title>
-      <sky-error-description>test description</sky-error-description>
-      <sky-error-action>
-        <button type="submit" class="sky-btn sky-btn-primary" (click)="customAction()">
-          test action text
-        </button>
-      </sky-error-action>
-    </sky-error>`;
-
-    let fixture = TestBed
-      .overrideComponent(
-        ErrorTestComponent,
-        {
-          set: {
-            template: html
-          }
-        }
-      )
-      .createComponent(ErrorTestComponent);
-
-    let el = fixture.nativeElement;
-
+    component.errorType = 'INVALID ERROR TYPE';
     fixture.detectChanges();
 
-    // check image
-    expect(el.querySelector('.sky-error-broken-image')).not.toExist();
-    expect(el.querySelector('.sky-error-notfound-image')).not.toExist();
-    expect(el.querySelector('.sky-error-construction-image')).not.toExist();
-    expect(el.querySelector('.sky-error-security-image')).not.toExist();
+    expect(getBrokenImage('#test-error')).not.toExist();
+    expect(getNotFoundImage('#test-error')).not.toExist();
+    expect(getConstructionImage('#test-error')).not.toExist();
+    expect(getSecurityImage('#test-error')).not.toExist();
 
-    expect(el.querySelector('.sky-error-image-container')).toHaveText('test image');
-    expect(el.querySelector('.sky-error-title')).toHaveText('test title');
-    expect(el.querySelector('.sky-error-description')).toHaveText('test description');
-    expect(el.querySelector('.sky-error-action button')).toHaveText('test action text');
+    expect(getErrorTitle('#test-error')).toHaveText(resourceStrings.brokenTitle);
+    expect(getErrorDescription('#test-error')).toHaveText(resourceStrings.brokenDescription);
+    expect(getErrorActionButton('#test-error')).toHaveText(component.buttonText);
+  });
+
+  it('should be accessible', async () => {
+    await fixture.whenStable();
+    await expectAsync(fixture.nativeElement).toBeAccessible();
   });
 });

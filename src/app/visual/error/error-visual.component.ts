@@ -3,6 +3,11 @@ import {
 } from '@angular/core';
 
 import {
+  SkyThemeService,
+  SkyThemeSettings
+} from '@skyux/theme';
+
+import {
   SkyErrorModalService
 } from '../../public/public_api';
 
@@ -14,7 +19,8 @@ import {
 export class ErrorVisualComponent {
 
   constructor(
-    private modal: SkyErrorModalService
+    private modal: SkyErrorModalService,
+    private themeSvc: SkyThemeService
   ) { }
 
   public openModal() {
@@ -36,5 +42,9 @@ export class ErrorVisualComponent {
     };
 
     this.modal.open(config);
+  }
+
+  public themeSettingsChange(themeSettings: SkyThemeSettings): void {
+    this.themeSvc.setTheme(themeSettings);
   }
 }

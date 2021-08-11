@@ -84,7 +84,7 @@ export class SkyErrorComponent implements OnInit {
 
     } else if (this.errorType.toLowerCase() === 'notfound') {
       this.title = this.getString('skyux_errors_not_found_title');
-      this.description = undefined;
+      this.description = this.getString('skyux_errors_not_found_description');
 
     } else if (this.errorType.toLowerCase() === 'construction') {
       this.title = this.getString('skyux_errors_construction_title');
@@ -92,7 +92,7 @@ export class SkyErrorComponent implements OnInit {
 
     } else if (this.errorType.toLowerCase() === 'security') {
       this.title = this.getString('skyux_errors_security_title');
-      this.description = undefined;
+      this.description = this.getString('skyux_errors_security_description');
     }
   }
 
