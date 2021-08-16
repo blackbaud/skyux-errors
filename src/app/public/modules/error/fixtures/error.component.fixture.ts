@@ -2,6 +2,10 @@ import {
   Component
 } from '@angular/core';
 
+import {
+  SkyErrorType
+} from '../error-type';
+
 @Component({
   selector: 'sky-test-cmp',
   templateUrl: 'error.component.fixture.html'
@@ -16,7 +20,7 @@ export class ErrorTestComponent {
 
   public customTitle: string = 'custom title value';
 
-  public errorType: string = 'broken';
+  public errorType: SkyErrorType = 'broken';
 
   public replaceDefaultDescription: boolean = false;
 

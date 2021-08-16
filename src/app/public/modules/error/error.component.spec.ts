@@ -213,8 +213,10 @@ describe('Error component', () => {
     expect(getConstructionImage('#test-error-custom-replace-default')).not.toExist();
     expect(getSecurityImage('#test-error-custom-replace-default')).not.toExist();
 
-    expect(getErrorTitle('#test-error-custom-replace-default')).toHaveText(`${resourceStrings.brokenTitle} ${component.customTitle}`);
-    expect(getErrorDescription('#test-error-custom-replace-default')).toHaveText(`${resourceStrings.brokenDescription} ${component.customDescription}`);
+    expect(getErrorTitle('#test-error-custom-replace-default'))
+      .toHaveText(`${resourceStrings.brokenTitle}  ${component.customTitle}`);
+    expect(getErrorDescription('#test-error-custom-replace-default'))
+      .toHaveText(`${resourceStrings.brokenDescription}  ${component.customDescription}`);
   });
 
   it('custom action method is called with action button is clicked', () => {
@@ -226,7 +228,7 @@ describe('Error component', () => {
   });
 
   it('Invalid error type text is ignored', () => {
-    component.errorType = 'INVALID ERROR TYPE';
+    (component.errorType as string) = 'INVALID ERROR TYPE';
     fixture.detectChanges();
 
     expect(getBrokenImage('#test-error')).not.toExist();
