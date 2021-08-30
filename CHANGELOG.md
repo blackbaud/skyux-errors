@@ -1,3 +1,8 @@
+# 5.0.0-beta.1 (2021-08-30)
+
+- Added default descriptions for the `notfound` and `security` error types. [#49](https://github.com/blackbaud/skyux-autonumeric/pull/49)
+- Updated the images for all the error types. [#49](https://github.com/blackbaud/skyux-autonumeric/pull/49)
+
 # 5.0.0-beta.0 (2021-07-08)
 
 - Initial beta release.
