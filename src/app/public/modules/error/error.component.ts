@@ -17,6 +17,10 @@ import {
   SkyErrorDescriptionComponent
 } from './error-description.component';
 
+import {
+  SkyErrorType
+} from './error-type';
+
 /**
  * Displays a SKY UX-themed error message.
  */
@@ -32,7 +36,7 @@ export class SkyErrorComponent implements OnInit {
  * `'notfound'`, and `'security'`.
  */
   @Input()
-  public set errorType(value: string) {
+  public set errorType(value: SkyErrorType) {
     this._errorType = value;
     this.setErrorTypeFields();
   }
@@ -65,14 +69,14 @@ export class SkyErrorComponent implements OnInit {
   @ContentChild(SkyErrorDescriptionComponent)
   private descriptionCmp: SkyErrorDescriptionComponent;
 
-  private _errorType: string;
+  private _errorType: SkyErrorType;
 
   constructor(
     private resourcesService: SkyLibResourcesService
   ) { }
 
   public ngOnInit() {
-    if (this.errorType && this.errorType !== '') {
+    if (this.errorType) {
       this.setErrorTypeFields();
     }
   }
@@ -84,7 +88,7 @@ export class SkyErrorComponent implements OnInit {
 
     } else if (this.errorType.toLowerCase() === 'notfound') {
       this.title = this.getString('skyux_errors_not_found_title');
-      this.description = undefined;
+      this.description = this.getString('skyux_errors_not_found_description');
 
     } else if (this.errorType.toLowerCase() === 'construction') {
       this.title = this.getString('skyux_errors_construction_title');
@@ -92,24 +96,8 @@ export class SkyErrorComponent implements OnInit {
 
     } else if (this.errorType.toLowerCase() === 'security') {
       this.title = this.getString('skyux_errors_security_title');
-      this.description = undefined;
+      this.description = this.getString('skyux_errors_security_description');
     }
-  }
-
-  public showBrokenImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'broken';
-  }
-
-  public showNotFoundImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'notfound';
-  }
-
-  public showConstructionImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'construction';
-  }
-
-  public showSecurityImage() {
-    return this.errorType && this.errorType.toLowerCase() === 'security';
   }
 
   private getString(key: string): string {
