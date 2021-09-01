@@ -57,8 +57,7 @@ import {
     SkyErrorImageComponent,
     SkyErrorTitleComponent,
     SkyErrorDescriptionComponent,
-    SkyErrorActionComponent,
-    SkyErrorModalFormComponent
+    SkyErrorActionComponent
   ],
   entryComponents: [
     SkyErrorModalFormComponent
