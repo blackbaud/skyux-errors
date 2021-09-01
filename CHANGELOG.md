@@ -1,3 +1,7 @@
+# 5.0.0-beta.2 (2021-09-01)
+
+- Migrated to Angular CLI. [#50](https://github.com/blackbaud/skyux-errors/pull/50)
+
 # 5.0.0-beta.1 (2021-08-30)
 
 - Added default descriptions for the `notfound` and `security` error types. [#49](https://github.com/blackbaud/skyux-autonumeric/pull/49)
