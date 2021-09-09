@@ -6,6 +6,9 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "paths": {
+      "@skyux/errors": [
+        "projects/errors/src/public-api.ts"
+      ],
       "errors": [
         "dist/errors/errors",
         "dist/errors"
