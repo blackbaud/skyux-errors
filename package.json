@@ -32,7 +32,7 @@
     "@skyux/i18n": "^5.0.0-beta.6",
     "@skyux/indicators": "^5.0.0-beta.2",
     "@skyux/inline-form": "^5.0.0-beta.0",
-    "@skyux/layout": "^5.0.0-beta.2",
+    "@skyux/layout": "^5.0.0-beta.5",
     "@skyux/lists": "^5.0.0-beta.1",
     "@skyux/lookup": "^5.0.0-beta.1",
     "@skyux/modals": "^5.0.0-beta.4",
