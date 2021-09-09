@@ -29,7 +29,11 @@
           "options": {
             "main": "projects/errors/src/test.ts",
             "tsConfig": "projects/errors/tsconfig.spec.json",
-            "karmaConfig": "projects/errors/karma.conf.js"
+            "karmaConfig": "projects/errors/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "**/fixtures/**"
+            ]
           }
         },
         "lint": {
