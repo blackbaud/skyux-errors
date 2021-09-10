@@ -1,3 +1,7 @@
+# 5.0.0-beta.4 (2021-09-10)
+
+- Updated SKY UX dependencies. [#58](https://github.com/blackbaud/skyux-errors/pull/58)
+
 # 5.0.0-beta.3 (2021-09-02)
 
 - Enabled Ivy's "partial" compilation mode. [#55](https://github.com/blackbaud/skyux-errors/pull/55)
