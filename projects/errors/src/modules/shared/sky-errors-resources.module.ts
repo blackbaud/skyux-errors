@@ -16,7 +16,7 @@ import {
 } from '@skyux/i18n';
 
 const RESOURCES: { [locale: string]: SkyLibResources } = {
-  'EN-US': {"skyux_errors_broken_description":{"message":"Try to refresh this page or come back later."},"skyux_errors_broken_title":{"message":"Sorry, something went wrong."},"skyux_errors_construction_description":{"message":"Thanks for your patience while improvements are made! \n Please check back in a little while."},"skyux_errors_construction_title":{"message":"This page will return soon."},"skyux_errors_not_found_title":{"message":"Sorry, we can't reach that page."},"skyux_errors_security_title":{"message":"This page requires additional permissions."}},
+  'EN-US': {"skyux_errors_broken_description":{"message":"Something went wrong.\nTry again or come back later."},"skyux_errors_broken_title":{"message":"That's odd..."},"skyux_errors_construction_description":{"message":"We appreciate your patience while we\nmake improvements."},"skyux_errors_construction_title":{"message":"Work in progress."},"skyux_errors_not_found_description":{"message":"Pardon us, but this page\nis missing or has moved."},"skyux_errors_not_found_title":{"message":"Nothing to see here."},"skyux_errors_security_description":{"message":"Ask your administrator for access."},"skyux_errors_security_title":{"message":"Heads up!\nYou're in a restricted area."}},
 };
 
 export class SkyErrorsResourcesProvider implements SkyLibResourcesProvider {
