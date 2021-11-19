@@ -1,12 +1,6 @@
-import {
-  element,
-  by
-} from 'protractor';
+import { element, by } from 'protractor';
 
-import {
-  expect,
-  SkyHostBrowser
-} from '@skyux-sdk/e2e';
+import { expect, SkyHostBrowser } from '@skyux-sdk/e2e';
 
 describe('Error', () => {
   it('should match previous screenshot for broken type', async (done) => {
@@ -14,7 +8,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-broken');
     expect('#screenshot-error-broken').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-broken-lg'
+      screenshotName: 'error-broken-lg',
     });
   });
 
@@ -23,7 +17,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-error-broken');
     expect('#screenshot-error-broken').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-broken-xs'
+      screenshotName: 'error-broken-xs',
     });
   });
 
@@ -32,7 +26,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-notfound');
     expect('#screenshot-error-notfound').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-notfound-lg'
+      screenshotName: 'error-notfound-lg',
     });
   });
 
@@ -41,7 +35,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-error-notfound');
     expect('#screenshot-error-notfound').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-notfound-xs'
+      screenshotName: 'error-notfound-xs',
     });
   });
 
@@ -50,7 +44,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-construction');
     expect('#screenshot-error-construction').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-construction-lg'
+      screenshotName: 'error-construction-lg',
     });
   });
 
@@ -59,7 +53,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-error-construction');
     expect('#screenshot-error-construction').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-construction-xs'
+      screenshotName: 'error-construction-xs',
     });
   });
 
@@ -68,7 +62,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-security');
     expect('#screenshot-error-security').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-security-lg'
+      screenshotName: 'error-security-lg',
     });
   });
 
@@ -77,7 +71,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-error-security');
     expect('#screenshot-error-security').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-security-xs'
+      screenshotName: 'error-security-xs',
     });
   });
 
@@ -86,7 +80,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-custom');
     expect('#screenshot-error-custom').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-custom-lg'
+      screenshotName: 'error-custom-lg',
     });
   });
 
@@ -95,7 +89,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-error-custom');
     expect('#screenshot-error-custom').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-custom-xs'
+      screenshotName: 'error-custom-xs',
     });
   });
 
@@ -104,21 +98,18 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-custom-broken');
     expect('#screenshot-error-custom-broken').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-custom-broken-lg'
+      screenshotName: 'error-custom-broken-lg',
     });
   });
 
-  it(
-    'should match previous screenshot for custom title and description (screen: xs)',
-    async (done) => {
-      await SkyHostBrowser.get('visual/error');
-      await SkyHostBrowser.setWindowBreakpoint('xs');
-      await SkyHostBrowser.scrollTo('#screenshot-error-custom-broken');
-      expect('#screenshot-error-custom-broken').toMatchBaselineScreenshot(done, {
-        screenshotName: 'error-custom-broken-xs'
-      });
-    }
-  );
+  it('should match previous screenshot for custom title and description (screen: xs)', async (done) => {
+    await SkyHostBrowser.get('visual/error');
+    await SkyHostBrowser.setWindowBreakpoint('xs');
+    await SkyHostBrowser.scrollTo('#screenshot-error-custom-broken');
+    expect('#screenshot-error-custom-broken').toMatchBaselineScreenshot(done, {
+      screenshotName: 'error-custom-broken-xs',
+    });
+  });
 
   it('should match previous error modal form screenshot', async (done) => {
     await SkyHostBrowser.get('visual/error');
@@ -126,7 +117,7 @@ describe('Error', () => {
     await element(by.css('.sky-test-error-modal')).click();
     await SkyHostBrowser.moveCursorOffScreen();
     expect('.sky-modal').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-modal-lg'
+      screenshotName: 'error-modal-lg',
     });
   });
 
@@ -136,7 +127,7 @@ describe('Error', () => {
     await element(by.css('.sky-test-error-modal')).click();
     await SkyHostBrowser.moveCursorOffScreen();
     expect('.sky-modal').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-modal-xs'
+      screenshotName: 'error-modal-xs',
     });
   });
 
@@ -146,7 +137,7 @@ describe('Error', () => {
     await element(by.css('.sky-test-error-modal-long-description')).click();
     await SkyHostBrowser.moveCursorOffScreen();
     expect('.sky-modal').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-modal-long-lg'
+      screenshotName: 'error-modal-long-lg',
     });
   });
 
@@ -156,7 +147,7 @@ describe('Error', () => {
     await element(by.css('.sky-test-error-modal-long-description')).click();
     await SkyHostBrowser.moveCursorOffScreen();
     expect('.sky-modal').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-modal-long-xs'
+      screenshotName: 'error-modal-long-xs',
     });
   });
 
@@ -165,7 +156,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('lg');
     await SkyHostBrowser.scrollTo('#screenshot-error-hidden-image');
     expect('#screenshot-error-hidden-image').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-hidden-image-lg'
+      screenshotName: 'error-hidden-image-lg',
     });
   });
 
@@ -174,7 +165,7 @@ describe('Error', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-error-hidden-image');
     expect('#screenshot-error-hidden-image').toMatchBaselineScreenshot(done, {
-      screenshotName: 'error-hidden-image-xs'
+      screenshotName: 'error-hidden-image-xs',
     });
   });
 });
