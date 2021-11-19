@@ -5,12 +5,12 @@ import { ErrorVisualComponent } from './visual/error/error-visual.component';
 const routes: Routes = [
   {
     path: 'visual/error',
-    component: ErrorVisualComponent
-  }
+    component: ErrorVisualComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

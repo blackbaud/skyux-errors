@@ -6,13 +6,8 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "paths": {
-      "@skyux/errors": [
-        "projects/errors/src/public-api.ts"
-      ],
-      "errors": [
-        "dist/errors/errors",
-        "dist/errors"
-      ]
+      "@skyux/errors": ["projects/errors/src/public-api.ts"],
+      "errors": ["dist/errors/errors", "dist/errors"]
     },
     "declaration": false,
     "downlevelIteration": true,
@@ -21,10 +16,7 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
